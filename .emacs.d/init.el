@@ -68,6 +68,22 @@
   (load-theme 'base16-default-dark t)
   )
 
+
+;; Set default indentation behavior
+(setq-default indent-tabs-mode nil) ;; Use spaces by default
+(setq-default tab-width 4)          ;; Set default tab width to 4 spaces
+
+;; Set tab width for Shell mode to 2 spaces
+(add-hook 'sh-mode-hook
+          (lambda ()
+            (setq-local tab-width 2)))
+
+;; Set indentation behavior for Go mode
+(add-hook 'go-mode-hook
+          (lambda ()
+            (setq-local indent-tabs-mode t) ;; Use tabs for indentation in Go mode
+            (setq-local tab-width 4)))       ;; Set tab width to 4 spaces in Go mode
+
 ; Configure company-mode
 (use-package company
   :ensure t
@@ -78,7 +94,7 @@
 
 ; (add-hook 'python-mode-hook #'(lambda () (setq flycheck-checker 'python-pylint)))
 
-; ; for python, you will need to install lsp: sudo pip3 install python-lsp-server
+; ;for python, you will need to install lsp: sudo pip3 install python-language-server
 ; (use-package lsp-mode
 ;   :ensure t
 ;   :hook
@@ -87,8 +103,10 @@
 ;   ;; Adjust any additional settings here
 ;   )
 
+; (setq lsp-pylsp-root-markers '(".git" "setup.cfg"))  ; Specify project root markers
+; (add-hook 'go-mode-hook #'lsp-deferred)
 
-(xterm-mouse-mode t) ; Enable
+(xterm-mouse-mode t) ; Enable mouse
 
 ;; Function to copy text to the Windows clipboard
 (defun copy-to-windows-clipboard (text)
@@ -158,13 +176,12 @@
 
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(global-display-line-numbers-mode t)
  '(package-selected-packages
-   '(pkg-info use-package lsp-mode gnu-elpa-keyring-update base16-theme web-mode json-mode css-mode))
+   '(go-mode pkg-info use-package lsp-mode gnu-elpa-keyring-update base16-theme web-mode json-mode css-mode))
  '(show-paren-mode t))
 
 (custom-set-faces
@@ -177,4 +194,5 @@
 
 ;; Enable desktop-save-mode to save the current desktop layout
 (desktop-save-mode t)
+
 

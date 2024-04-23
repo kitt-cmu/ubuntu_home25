@@ -184,8 +184,9 @@ fi
 # Define function to start Emacs or Emacs client depending on whether the daemon is running
 emacs_or_emacsclient() {
     if pgrep -f "emacs --daemon --no-desktop" >/dev/null; then
-        emacsclient "$@"
+        emacsclient -c "$@"
     else
+        'emacs' --daemon --no-desktop >/dev/null 2>&1 &
         'emacs' "$@"
     fi
 }
