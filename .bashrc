@@ -175,6 +175,16 @@ PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 shopt -s cdspell
 
+# go binaries
+
+if ! echo "$PATH" | grep -q "/usr/local/go/bin"; then
+    export PATH="$PATH:/usr/local/go/bin"
+fi
+
+
+if ! echo "$PATH" | grep -q "$HOME/go/bin"; then
+    export PATH="$PATH:"$HOME"/go/bin"
+fi
 
 # Check if a screen session named "emacs" exists, if not, start Emacs daemon in a new screen session
 if ! pgrep -f "emacs --daemon --no-desktop" >/dev/null; then
