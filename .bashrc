@@ -176,3 +176,19 @@ PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 shopt -s cdspell
 
 
+# Check if a screen session named "emacs" exists, if not, start Emacs daemon in a new screen session
+if ! pgrep -f "emacs --daemon --no-desktop" >/dev/null; then
+    'emacs' --daemon --no-desktop >/dev/null 2>&1 &
+fi
+
+# Define function to start Emacs or Emacs client depending on whether the daemon is running
+emacs_or_emacsclient() {
+    if pgrep -f "emacs --daemon --no-desktop" >/dev/null; then
+        emacsclient "$@"
+    else
+        'emacs' "$@"
+    fi
+}
+
+# Use the function to start Emacs or Emacs client
+alias emacs='emacs_or_emacsclient'
