@@ -78,6 +78,7 @@
 
 ; (add-hook 'python-mode-hook #'(lambda () (setq flycheck-checker 'python-pylint)))
 
+;; for python, you will need to install lsp: sudo pip3 install python-language-server
 ; (use-package lsp-mode
 ;   :ensure t
 ;   :hook
