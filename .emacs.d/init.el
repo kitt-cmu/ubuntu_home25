@@ -1,4 +1,3 @@
-;; Add repositories and other package-related configuration here
 (require 'package)
 
 (setq package-archives
@@ -12,8 +11,8 @@
   (package-refresh-contents)
   (package-install 'gnu-elpa-keyring-update)
   )
-
-; (setq package-check-signature "allow-unsigned")
+(setq package-check-signature nil)
+;; (setq package-check-signature "allow-unsigned")
 
 ;; Check if gnu-elpa-keyring-update is installed
 (if (package-installed-p 'gnu-elpa-keyring-update)
@@ -84,7 +83,7 @@
             (setq-local indent-tabs-mode t) ;; Use tabs for indentation in Go mode
             (setq-local tab-width 4)))       ;; Set tab width to 4 spaces in Go mode
 
-; Configure company-mode
+;; Configure company-mode
 (use-package company
   :ensure t
   :config
@@ -92,9 +91,9 @@
   (global-company-mode 1) ; Enable Company mode globally
   )
 
-; (add-hook 'python-mode-hook #'(lambda () (setq flycheck-checker 'python-pylint)))
+(add-hook 'python-mode-hook #'(lambda () (setq flycheck-checker 'python-pylint)))
 
-; ;for python, you will need to install lsp: sudo pip3 install python-language-server
+; ;;for python, you will need to install lsp: sudo pip3 install python-language-server
 ; (use-package lsp-mode
 ;   :ensure t
 ;   :hook
@@ -195,4 +194,19 @@
 ;; Enable desktop-save-mode to save the current desktop layout
 (desktop-save-mode t)
 
+;; Load and configure the powerline package
+(use-package powerline
+  :ensure t                    ; Install the package if it's not already installed
+  :config
+  (powerline-default-theme))   ; Set the default powerline theme
 
+;; Configure the header line to display the buffer's directory path
+(setq-default header-line-format
+              (list
+                '(:eval
+                 (let ((dir (file-name-directory buffer-file-name)))
+                   (if dir
+                       (concat " " (replace-regexp-in-string "^/\\|/$" "" (replace-regexp-in-string "/" (propertize " \uE0B1 " 'face '(:foreground "black")) dir)) " ")
+                     default-directory)))
+                '(:eval (format-mode-line mode-line-buffer-identification))
+                ))
