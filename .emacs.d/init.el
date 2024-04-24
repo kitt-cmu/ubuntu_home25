@@ -210,15 +210,17 @@
 (desktop-save-mode t)
 
 ;; Configure the header line to display the buffer's directory path only when lsp-mode is off
-(if (not (bound-and-true-p lsp-enabled))
-    (setq-default header-line-format
-              (list
-                '(:eval
-                 (let ((dir (file-name-directory buffer-file-name)))
-                   (if dir
-                       (concat " " (replace-regexp-in-string "^/\\|/$" "" (replace-regexp-in-string "/" (propertize " \uE0B1 " 'face '(:foreground "black")) dir)) " ")
-                     default-directory)))
-                '(:eval (format-mode-line mode-line-buffer-identification))
-                ))
+(defun my-set-header-line-format ()
+  (when buffer-file-name
+    (setq-local header-line-format
+                (list
+                 '(:eval
+                  (let ((dir (file-name-directory buffer-file-name)))
+                    (if dir
+                        (concat " " (replace-regexp-in-string "^/\\|/$" "" (replace-regexp-in-string "/" (propertize " \uE0B1 " 'face '(:foreground "black")) dir)) " ")
+                      default-directory)))
+                 '(:eval (format-mode-line mode-line-buffer-identification))))))
 
-  )
+(if (not (bound-and-true-p lsp-enabled))
+  (add-hook 'find-file-hook 'my-set-header-line-format)
+)
