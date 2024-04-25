@@ -40,7 +40,8 @@
   '(json-mode
     ; go-mode
     ; js2-mode
-    web-mode css-mode
+    web-mode
+    ; css-mode
     ; ruby-mode
     ; inf-ruby
     ; racket-mode
@@ -50,7 +51,8 @@
 
 ;; Ensure the listed packages are installed
 (dolist (package my-packages)
-  (unless (package-installed-p package)
+  (when (and (require package nil 'noerror) ; Check if the package is available
+             (not (package-installed-p package))) ; Check if it's not already installed
     (package-install package)))
 
 ;; Set the color source for the Base16 theme in 256-color terminal environments
