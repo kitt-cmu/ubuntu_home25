@@ -200,8 +200,8 @@ emacs_or_emacsclient() {
   # Wait for Emacs daemon to start
   while true; do
     # Start Emacs client
-    emacsclient -c >/dev/null 2>&1
-      # Check exit code, if not zero, sleep for 2 more minutes
+    emacsclient  -n -e "1" -u > /dev/null 2>&1
+    # Check exit code, if not zero, sleep for 2 more minutes
     if [ $? -ne 0 ]; then
       echo "Waiting 5 more second for daemon to be ready..."
       sleep 5
