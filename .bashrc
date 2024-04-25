@@ -213,3 +213,7 @@ emacs_or_emacsclient() {
 }
 # Use the function to start Emacs or Emacs client
 alias emacs='emacs_or_emacsclient'
+
+# unsetting the suspend key to
+# prevent hitting Ctrl+Z (Control + Z) unintentionally
+stty susp ""
