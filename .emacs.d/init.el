@@ -209,18 +209,27 @@
 ;; Enable desktop-save-mode to save the current desktop layout
 (desktop-save-mode t)
 
-;; Configure the header line to display the buffer's directory path only when lsp-mode is off
+;; Configure the header line to display a red bar at the top
 (defun my-set-header-line-format ()
+  (progn
   (when buffer-file-name
     (setq-local header-line-format
                 (list
-                 '(:eval
-                  (let ((dir (file-name-directory buffer-file-name)))
-                    (if dir
-                        (concat " " (replace-regexp-in-string "^/\\|/$" "" (replace-regexp-in-string "/" (propertize " \uE0B1 " 'face '(:foreground "black")) dir)) " ")
+                  '(:eval
+                    (let ((dir (file-name-directory buffer-file-name)))
+                      (if dir
+                        (concat "" (replace-regexp-in-string "^/\\|/$" "" (replace-regexp-in-string "/" (propertize " \ue0b1 " 'face '(:foreground "black")) dir)) "")
                       default-directory)))
-                 '(:eval (format-mode-line mode-line-buffer-identification))))))
+                  '(:eval (string-trim-right (format-mode-line mode-line-buffer-identification)))
+                  '(:eval
+                    (let ((theme-bg-color (face-background 'default)))
+                    (concat " " (propertize "\ue0b0" 'face `(:foreground ,theme-bg-color :inverse-video t)))))
+                  '(:eval
+                    (let ((theme-bg-color (face-background 'default)))
+                      (propertize " " 'display '((space :align-to (- right 0)))
+                                   'face `(:background ,theme-bg-color))))
+                  )))))
 
 (if (not (bound-and-true-p lsp-enabled))
-  (add-hook 'find-file-hook 'my-set-header-line-format)
+    (add-hook 'find-file-hook 'my-set-header-line-format))
 )
