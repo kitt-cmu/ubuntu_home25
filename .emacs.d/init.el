@@ -232,4 +232,3 @@
 
 (if (not (bound-and-true-p lsp-enabled))
     (add-hook 'find-file-hook 'my-set-header-line-format))
-)
