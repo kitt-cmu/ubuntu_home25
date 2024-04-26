@@ -188,20 +188,20 @@ fi
 
 # Check if a screen session named "emacs" exists, if not, start Emacs daemon in a new screen session
 if ! pgrep -f "emacs --daemon --no-desktop" >/dev/null; then
-    'emacs' --daemon --no-desktop >/dev/null 2>&1 &
+    ('emacs' --daemon --no-desktop >/dev/null 2>&1)
 fi
 
 # Define function to start Emacs or Emacs client depending on whether the daemon is running
 emacs_or_emacsclient() {
   if ! pgrep -f "emacs --daemon --no-desktop" >/dev/null; then
-      'emacs' --daemon --no-desktop >/dev/null 2>&1 &
+    ('emacs' --daemon --no-desktop >/dev/null 2>&1)
   fi
   echo "Connecting to daemon..."
   # Wait for Emacs daemon to start
   while true; do
     # Start Emacs client
     emacsclient  -n -e "1" -u > /dev/null 2>&1
-    # Check exit code, if not zero, sleep for 2 more minutes
+      # Check exit code, if not zero, sleep for 2 more minutes
     if [ $? -ne 0 ]; then
       echo "Waiting 5 more second for daemon to be ready..."
       sleep 5
@@ -211,6 +211,7 @@ emacs_or_emacsclient() {
   done
   emacsclient -c "$@"
 }
+
 # Use the function to start Emacs or Emacs client
 alias emacs='emacs_or_emacsclient'
 
