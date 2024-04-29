@@ -128,13 +128,14 @@ if [[ -x "$(command -v subl.exe)" ]]; then
 fi
 
 if [[ -x "$(command -v /mnt/c/Program\ Files/Microsoft\ VS\ Code/Code.exe)" ]]; then
-  # echo "VSCODE.EXE"
   function vscode_wsl {
     path_arr=()
     for p in "$@"; do
       path_arr+=("$(wslpath -m "$p")")
     done
-    /mnt/c/Program\ Files/Microsoft\ VS\ Code/Code.exe "${path_arr[@]}" > /dev/null 2>&1 &
+    setsid /mnt/c/Program\ Files/Microsoft\ VS\ Code/Code.exe \
+      "${path_arr[@]}" >/dev/null &
+    disown
   }
   export -f vscode_wsl
   alias code="vscode_wsl"
