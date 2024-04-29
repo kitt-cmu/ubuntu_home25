@@ -133,9 +133,7 @@ if [[ -x "$(command -v /mnt/c/Program\ Files/Microsoft\ VS\ Code/Code.exe)" ]]; 
     for p in "$@"; do
       path_arr+=("$(wslpath -m "$p")")
     done
-    setsid /mnt/c/Program\ Files/Microsoft\ VS\ Code/Code.exe \
-      "${path_arr[@]}" >/dev/null &
-    disown
+    cmd.exe /c code "${path_arr[@]}"
   }
   export -f vscode_wsl
   alias code="vscode_wsl"
