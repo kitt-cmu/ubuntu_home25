@@ -141,7 +141,7 @@ fi
 
 # END -- For Sublime Text & VSCODE on WSL
 
-if [[ -x "$(command -v subl.exe)" ]]; then
+if [[ -x "$(command -v kdiff3.exe)" ]]; then
   alias kdiff3="kdiff3.exe"
 fi
 
