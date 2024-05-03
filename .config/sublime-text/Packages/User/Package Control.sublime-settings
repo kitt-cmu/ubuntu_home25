@@ -5,6 +5,7 @@
 	],
 	"installed_packages":
 	[
-		"Terminus"
+		"Package Control",
+		"Terminus",
 	],
 }

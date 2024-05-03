@@ -1,6 +1,8 @@
 {
 	"file_history":
 	[
+		"/home/kk/.config/sublime-text/Packages/Default/Preferences.sublime-settings",
+		"/home/kk/.config/sublime-text/Packages/User/Python.sublime-settings",
 		"/home/kk/.config/sublime-text/Packages/Terminus/Default.sublime-keymap",
 		"/home/kk/.config/sublime-text/Packages/User/Default (Linux).sublime-keymap"
 	],
@@ -8,13 +10,13 @@
 	[
 	],
 	"last_version": 4169,
-	"last_window_id": 2,
+	"last_window_id": 3,
 	"log_indexing": false,
 	"next_update_check": 1714814457,
 	"settings":
 	{
 		"new_window_full_screen": false,
-		"new_window_height": 1017.0,
+		"new_window_height": 0.0,
 		"new_window_maximized": true,
 		"new_window_position":
 		[
@@ -68,6 +70,7 @@
 			},
 			"file_history":
 			[
+				"/home/kk/Desktop/hello.py"
 			],
 			"find":
 			{
@@ -157,7 +160,7 @@
 			{
 			}
 		},
-		"new_window_width": 1920.0
+		"new_window_width": 0.0
 	},
 	"windows":
 	[
@@ -170,6 +173,15 @@
 			},
 			"buffers":
 			[
+				{
+					"file": "/home/kk/Desktop/hello.py",
+					"settings":
+					{
+						"buffer_size": 0,
+						"encoding": "UTF-8",
+						"line_ending": "Unix"
+					}
+				}
 			],
 			"build_system": "",
 			"build_system_choices":
@@ -249,6 +261,36 @@
 				{
 					"sheets":
 					[
+						{
+							"buffer": 0,
+							"file": "/home/kk/Desktop/hello.py",
+							"selected": true,
+							"semi_transient": false,
+							"settings":
+							{
+								"buffer_size": 0,
+								"regions":
+								{
+								},
+								"selection":
+								[
+									[
+										0,
+										0
+									]
+								],
+								"settings":
+								{
+									"syntax": "Packages/Python/Python.sublime-syntax"
+								},
+								"translation.x": 0.0,
+								"translation.y": 0.0,
+								"zoom_level": 1.0
+							},
+							"stack_index": 0,
+							"stack_multiselect": false,
+							"type": "text"
+						}
 					]
 				}
 			],
