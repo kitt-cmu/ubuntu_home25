@@ -49,13 +49,14 @@
     company
     ))
 
-; Ensure the listed packages are installed and configured with use-package
+;; Ensure the listed packages are installed and configured with use-package
 (dolist (package my-packages)
+  (when (package-installed-p package)
+    (require package))
   (unless (package-installed-p package)
-    (package-install package)))
-
-(dolist (package my-packages)
-  (require package))
+    (condition-case nil
+        (package-install package)
+      (error (message "Package %s is not available" package)))))
 
 ;; Set the color source for the Base16 theme in 256-color terminal environments
 ;; Possible values:
