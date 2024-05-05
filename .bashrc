@@ -230,3 +230,11 @@ alias emacs='emacs_or_emacsclient'
 # unsetting the suspend key to
 # prevent hitting Ctrl+Z (Control + Z) unintentionally
 stty susp ""
+
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        source "$BASE16_SHELL/profile_helper.sh"
+
+base16_default
