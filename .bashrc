@@ -221,7 +221,7 @@ emacs_or_emacsclient() {
       break
     fi
   done
-  emacsclient -c "$@"
+  emacsclient -nw -c "$@"
 }
 
 # Use the function to start Emacs or Emacs client
