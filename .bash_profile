@@ -8,23 +8,24 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+if [ ! -x /usr/bin/subl ]; then 
 # START -- For Sublime Text on WSL
-if [ -d "/mnt/d/Program Files/Sublime Text" ]; then
-	WINSUBL="/mnt/d/Program Files/Sublime Text"
-elif [ -d "/mnt/d/Program Files (x86)/Sublime Text" ]; then
-	WINSUBL="/mnt/d/Program Files (x86)/Sublime Text"
-elif [ -d "/mnt/c/Program Files/Sublime Text" ]; then
-	WINSUBL="/mnt/c/Program Files/Sublime Text"
-elif [ -d "/mnt/c/Program Files (x86)/Sublime Text" ]; then
+  if [ -d "/mnt/d/Program Files/Sublime Text" ]; then
+  	WINSUBL="/mnt/d/Program Files/Sublime Text"
+  elif [ -d "/mnt/d/Program Files (x86)/Sublime Text" ]; then
+  	WINSUBL="/mnt/d/Program Files (x86)/Sublime Text"
+  elif [ -d "/mnt/c/Program Files/Sublime Text" ]; then
+  	WINSUBL="/mnt/c/Program Files/Sublime Text"
+  elif [ -d "/mnt/c/Program Files (x86)/Sublime Text" ]; then
 	WINSUBL="/mnt/c/Program Files (x86)/Sublime Text"
-fi
+  fi
 
-if [[ ":$PATH:" != *":$WINSUBL:"* ]]; then
-	export PATH="$WINSUBL:$PATH"
-fi
+  if [[ ":$PATH:" != *":$WINSUBL:"* ]]; then
+  	export PATH="$WINSUBL:$PATH"
+  fi
 
-# END -- For Sublime Text on WSL
-
+  # END -- For Sublime Text on WSL
+fi 
 # If running Bash, include .bashrc if it exists to ensure settings are applied
 if [ -n "$BASH_VERSION" ]; then
     if [ -f "$HOME/.bashrc" ]; then
